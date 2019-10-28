@@ -29,14 +29,14 @@ function App() {
   useEffect(() => {
     async function getSsids() {
       let response = await fetch(
-        "https://gist.githubusercontent.com/CODeRUS/9d2c4dc7c7946d66309962a2a1711fc8/raw/d49a94d859da964e1ec0af23c6d78cd5288a83db/wifi.json"
+        "/wifiList"
       );
 
       if (response.ok) {
         let json = await response.json();
         setSsids(json);
       } else {
-        setApiError(`Ошибка HTTP: ${response.status}`);
+        setApiError(`HTTP error: ${response.status}`);
       }
     }
     getSsids();
