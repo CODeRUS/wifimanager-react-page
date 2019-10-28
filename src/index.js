@@ -1,0 +1,108 @@
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+
+import "./styles.css";
+
+// const apiResp = [
+//   {
+//     ssid: "My access point 1",
+//     signalStrength: 60,
+//     security: "none" // WEP, WPA2,...
+//   },
+//   {
+//     ssid: "My access point 2",
+//     signalStrength: 60,
+//     security: "WEP" // WEP, WPA2,...
+//   },
+//   {
+//     ssid: "My access point 3",
+//     signalStrength: 60,
+//     security: "WPA2" // WEP, WPA2,...
+//   }
+// ];
+
+function App() {
+  const [selectedSsid, setSelectedSsid] = useState({});
+  const [ssids, setSsids] = useState([]);
+  const [apiError, setApiError] = useState();
+
+  useEffect(() => {
+    async function getSsids() {
+      let response = await fetch(
+        "https://gist.githubusercontent.com/CODeRUS/9d2c4dc7c7946d66309962a2a1711fc8/raw/d49a94d859da964e1ec0af23c6d78cd5288a83db/wifi.json"
+      );
+
+      if (response.ok) {
+        let json = await response.json();
+        setSsids(json);
+      } else {
+        setApiError(`Ошибка HTTP: ${response.status}`);
+      }
+    }
+    getSsids();
+  }, []);
+
+  const handleSelect = index => {
+    setSelectedSsid(ssids[index]);
+  };
+
+  return (
+    <div className="App">
+      <h1>Connect to WiFi</h1>
+      <div className="ssids-container">
+        {ssids.map((item, index) => (
+          <button className="btn btn-block" onClick={() => handleSelect(index)}>
+            {item.ssid} - <b>{item.signalStrength}%</b> 📶{" "}
+            {item.security === "WEP" && "🔒"}
+            {item.security === "WPA2" && "🛡️"}
+          </button>
+        ))}
+      </div>
+      {apiError && <div className="error"> ☢ {apiError} </div>}
+      {selectedSsid.ssid && (
+        <div>
+          <h2>Connect to {selectedSsid.ssid}</h2>
+          {selectedSsid.security && !apiError && (
+            <form action="/wifiSave" method="post">
+              <div className="form">
+                {selectedSsid.security === "WPA2" && (
+                  <input
+                    className="input"
+                    name="login"
+                    type="text"
+                    required
+                    placeholder="login"
+                  />
+                )}
+                {(selectedSsid.security === "WEP" ||
+                  selectedSsid.security === "WPA2") && (
+                  <input
+                    className="input"
+                    name="password"
+                    type="password"
+                    required
+                    placeholder="password"
+                  />
+                )}
+                <input
+                  className="hidden"
+                  name="ssid"
+                  required
+                  value={selectedSsid.ssid}
+                  type="text"
+                  placeholder="ssid"
+                />
+              </div>
+              <button type="submit" className="btn btn-block text-center">
+                CONNECT
+              </button>
+            </form>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
