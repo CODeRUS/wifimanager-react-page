@@ -3,24 +3,6 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 
-// const apiResp = [
-//   {
-//     ssid: "My access point 1",
-//     signalStrength: 60,
-//     security: "none" // WEP, WPA2,...
-//   },
-//   {
-//     ssid: "My access point 2",
-//     signalStrength: 60,
-//     security: "WEP" // WEP, WPA2,...
-//   },
-//   {
-//     ssid: "My access point 3",
-//     signalStrength: 60,
-//     security: "WPA2" // WEP, WPA2,...
-//   }
-// ];
-
 function App() {
   const [selectedSsid, setSelectedSsid] = useState({});
   const [ssids, setSsids] = useState([]);
@@ -71,6 +53,9 @@ function App() {
                     name="login"
                     type="text"
                     required
+                    autocorrect="off"
+                    autocapitalize="off"
+                    autocomplete="username"
                     placeholder="login"
                   />
                 )}
@@ -81,6 +66,7 @@ function App() {
                     name="password"
                     type="password"
                     required
+                    autocomplete="current-password"
                     placeholder="password"
                   />
                 )}
