@@ -27,7 +27,9 @@ function App() {
 
   const handleSelect = index => {
     setSelectedSsid(ssids[index]);
-    scrollToRef(formRef);
+    setTimeout(() => {
+      scrollToRef(formRef);
+    }, 0);
   };
 
   return (
