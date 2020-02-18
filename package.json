@@ -7,14 +7,16 @@
   "dependencies": {
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "^3.4.0"
   },
   "devDependencies": {
+    "gzipper": "^3.5.0",
     "typescript": "3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "gzipper --verbose ./build ./gzipped",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
