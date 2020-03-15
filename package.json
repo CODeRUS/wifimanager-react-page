@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "gzipper --verbose ./build ./gzipped",
+    "postbuild": "gzipper --verbose --level 9 ./build ./gzipped",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
