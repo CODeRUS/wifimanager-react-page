@@ -11,11 +11,12 @@
   },
   "devDependencies": {
     "gzipper": "^3.5.0",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3",
+    "rewire": "5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node ./scripts/build-non-split.js",
     "postbuild": "gzipper --verbose --level 9 ./build ./gzipped",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
