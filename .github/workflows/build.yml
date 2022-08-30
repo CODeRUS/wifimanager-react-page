@@ -8,6 +8,9 @@ on:
     branches:
     - master
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -58,4 +61,10 @@ jobs:
         hub release create "${assets[@]}" -m "$RELEASE_TAG" "$RELEASE_TAG"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+        
+    - name: Deploy GH Actions
+      if: github.ref == 'refs/heads/master'
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: build
+        branch: gh-pages
