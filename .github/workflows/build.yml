@@ -41,6 +41,7 @@ jobs:
         cp build/index.html data/wifi-cdn.html
         sed -i 's#href="#href="https://coderus.github.io/wifimanager-react-page#g' data/wifi-cdn.html
         sed -i 's#src="#src="https://coderus.github.io/wifimanager-react-page#g' data/wifi-cdn.html
+        cp data/wifi.html.gz data/wifi-local.html.gz
         gzip data/wifi-cdn.html
       
     - name: Upload build result
