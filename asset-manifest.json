@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/wifi-main.css",
+    "main.js": "/static/js/wifi-main.js",
+    "main.js.map": "/static/js/wifi-main.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c025d488cb7f3c358852fb65d1d03766.js": "/precache-manifest.c025d488cb7f3c358852fb65d1d03766.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/wifi-main.css.map": "/static/css/wifi-main.css.map",
+    "static/js/wifi-main.js.LICENSE.txt": "/static/js/wifi-main.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/css/wifi-main.css",
+    "static/js/wifi-main.js"
+  ]
+}
